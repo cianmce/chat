@@ -70,7 +70,7 @@ class Server
 
     # port, ip = client.unpack_sockaddr_in(socket.getpeername)
     # info "port: #{port} IP: #{ip}"
-    info "Client: (#{client.peeraddr[1]}) #{client.peeraddr[2]}"
+    info "Client: (#{client.peeraddr[2]}) #{client.peeraddr[3]}"
 
 
     text = "Unknown"
