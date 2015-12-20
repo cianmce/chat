@@ -28,6 +28,7 @@ MESSAGE:#{message}"
   def get_client_id(client_name, client_socket)
     # Returns ID of client, ID is the client name
     # Adds if new client
+    info "Getting client_id for #{client_name}"
     unless @clients.include?(client_name)
       @clients[client_name] = client_socket
     end
