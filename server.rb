@@ -65,7 +65,6 @@ class Server
   def handle_request(client)
     # data = client.gets # Read 1st line from socket
 
-    read_chunk = 1024
     data = client.readpartial(MAX_READ_CHUNK) # Read all data
     # info client.peeraddr
     info "received: #{data}"
