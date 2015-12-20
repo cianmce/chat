@@ -69,9 +69,9 @@ class Server
     text = "Unknown"
     if data.start_with?("HELO")
       text = helo(data, client)
-    elsif data == "KILL_SERVICE\n"
+    elsif data.start_with?("JOIN_CHATROOM")      
       text = "JOIN_CHATROOM:room1"
-    elsif data.start_with?("JOIN_CHATROOM")
+    elsif data == "KILL_SERVICE\n"
       text = kill(data, client)
     else
       text = unknown_message(data, client)
@@ -99,10 +99,9 @@ class Server
   end
   def kill(data, client)
     info "Killing"
-    # @running = false
-    # @socket.close
+    @running = false
+    @socket.close
     text = "Server closing\n"
-    text = ""
     return text
   end
 
