@@ -65,7 +65,7 @@ class Server
     puts 'handle_request'
     data = client.gets # Read 1st line from socket
     # data = client.read # Read all data
-    info client.peeraddr
+    # info client.peeraddr
     text = "Unknown"
     if data.start_with?("HELO")
       text = helo(data, client)
