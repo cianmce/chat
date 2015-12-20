@@ -95,7 +95,7 @@ class Server
 
   # Handle different requests
   # Chat room requests
-  def join_room(data, client):
+  def join_room(data, client)
     # JOIN_CHATROOM:room1
     # CLIENT_IP:0
     # PORT:0
@@ -106,7 +106,7 @@ class Server
     client_id = data.scan(/CLIENT_NAME:(\w+)/).first
     info "Room: #{room_id} Client: #{client_id}"
 
-    "JOINED_CHATROOM:#{room_id}"
+    return "JOINED_CHATROOM:#{room_id}"
   end
 
   # Old requests
