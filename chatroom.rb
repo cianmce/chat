@@ -12,6 +12,9 @@ class ChatRoom
 
   def message_chat_room(room_ref, message)
     # Sends message to every client in room
+
+    info "Sending '#{message}' to: #{room_ref}"
+
     clients = @rooms[room_ref][:clients]
     clients.each do |client, socket|
       text = "CHAT:#{room_ref}
@@ -43,6 +46,7 @@ MESSAGE:#{message}"
     end
 
     @rooms[room_ref][:clients].push(client_name)
+    info "Sending join message to chatroom"
     message_chat_room(room_ref, "client1 has joined this chatroom.\n\n")
     {:room_ref => room_ref, :join_id => client_id}
   end
