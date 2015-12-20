@@ -1,0 +1,6 @@
+
+
+class ChatRoom
+
+end
+

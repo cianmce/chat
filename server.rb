@@ -1,6 +1,7 @@
 require 'socket'
 require 'thread'
 require 'open-uri'
+require_relative 'chatroom'
 
 
 class Server
