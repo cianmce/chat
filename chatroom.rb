@@ -19,7 +19,7 @@ class ChatRoom
     clients.each do |client, socket|
       text = "CHAT:#{room_ref}
 CLIENT_NAME:#{client}
-MESSAGE:#{message}"
+MESSAGE:#{message}\n\n"
       puts "Sending '#{text}' to: #{client}"
       socket.puts text
     end
