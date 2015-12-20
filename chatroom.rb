@@ -36,7 +36,9 @@ MESSAGE:#{message}"
   end
 
   def add_client_to_room(client_name, room_name, client_socket)
+    info "about to add client to room"
     room_ref = room_name.hash
+    info "adding client to room"
     client_id = get_client_id(client_name, client_socket)
 
     unless @rooms.include?(room_ref)
