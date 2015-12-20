@@ -13,14 +13,14 @@ class ChatRoom
   def message_chat_room(room_ref, message)
     # Sends message to every client in room
 
-    info "Sending '#{message}' to: #{room_ref}"
+    puts "Sending '#{message}' to: #{room_ref}"
 
     clients = @rooms[room_ref][:clients]
     clients.each do |client, socket|
       text = "CHAT:#{room_ref}
 CLIENT_NAME:#{client}
 MESSAGE:#{message}"
-      info "Sending '#{text}' to: #{client}"
+      puts "Sending '#{text}' to: #{client}"
       socket.puts text
     end
   end
@@ -28,7 +28,7 @@ MESSAGE:#{message}"
   def get_client_id(client_name, client_socket)
     # Returns ID of client, ID is the client name
     # Adds if new client
-    info "Getting client_id for #{client_name}"
+    puts "Getting client_id for #{client_name}"
     unless @clients.include?(client_name)
       @clients[client_name] = client_socket
     end
@@ -36,9 +36,9 @@ MESSAGE:#{message}"
   end
 
   def add_client_to_room(client_name, room_name, client_socket)
-    info "about to add client to room"
+    puts "about to add client to room"
     room_ref = room_name.hash
-    info "adding client to room"
+    puts "adding client to room"
     client_id = get_client_id(client_name, client_socket)
 
     unless @rooms.include?(room_ref)
@@ -49,7 +49,7 @@ MESSAGE:#{message}"
     end
 
     @rooms[room_ref][:clients].push(client_name)
-    info "Sending join message to chatroom"
+    puts "Sending join message to chatroom"
     message_chat_room(room_ref, "client1 has joined this chatroom.\n\n")
     {:room_ref => room_ref, :join_id => client_id}
   end
