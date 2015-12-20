@@ -62,10 +62,10 @@ class Server
   end
 
   def handle_request(client)
-    puts 'handle_request'
     data = client.gets # Read 1st line from socket
     # data = client.read # Read all data
     # info client.peeraddr
+    info "received: #{data}"
     text = "Unknown"
     if data.start_with?("HELO")
       text = helo(data, client)
@@ -88,7 +88,6 @@ class Server
     
   # Handle different requests
   def helo(data, client)
-    info "received HELO"
     text = "#{data}IP:#{@remote_ip}\nPort:#{@port}\nStudentID:#{@student_id}\n"
     return text
   end
