@@ -4,6 +4,7 @@ require 'open-uri'
 
 
 class Server
+  MAX_READ_CHUNK = 1024
   def initialize(logger, student_id)
     @logger     = logger
     @student_id = student_id
@@ -65,7 +66,7 @@ class Server
     # data = client.gets # Read 1st line from socket
 
     read_chunk = 1024
-    data = client.readpartial(read_chunk) # Read all data
+    data = client.readpartial(MAX_READ_CHUNK) # Read all data
     # info client.peeraddr
     info "received: #{data}"
     text = "Unknown"
