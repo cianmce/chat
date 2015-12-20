@@ -99,8 +99,8 @@ class Server
   end
   def kill(data, client)
     info "Killing"
-    @running = false
-    @socket.close
+    # @running = false
+    # @socket.close
     text = "Server closing\n"
     return text
   end
