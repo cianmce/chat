@@ -102,8 +102,8 @@ class Server
     # CLIENT_NAME:client1
 
     # Get room and client name
-    room_id   = data.scan(/JOIN_CHATROOM:(\w+)/).first
-    client_id = data.scan(/CLIENT_NAME:(\w+)/).first
+    room_id   = data.scan(/JOIN_CHATROOM:(\w+)/).first[0]
+    client_id = data.scan(/CLIENT_NAME:(\w+)/).first[0]
     info "Room: #{room_id} Client: #{client_id}"
 
     return "JOINED_CHATROOM:#{room_id}"
