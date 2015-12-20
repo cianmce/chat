@@ -65,12 +65,14 @@ class Server
   def handle_request(client)
     # data = client.gets # Read 1st line from socket
 
-    port, ip = Socket.unpack_sockaddr_in(socket.getpeername)
+    data = client.readpartial(MAX_READ_CHUNK) # Read all data
+    info "received: #{data}"
+
+    port, ip = client.unpack_sockaddr_in(socket.getpeername)
     info "port: #{port} IP: #{ip}"
     info client.peeraddr
 
-    data = client.readpartial(MAX_READ_CHUNK) # Read all data
-    info "received: #{data}"
+
     text = "Unknown"
     if data.start_with?("HELO")
       text = helo(data, client)
