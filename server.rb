@@ -89,7 +89,7 @@ class Server
     sleep(0.5)
     info "returning: '#{text}'"
     client.puts text
-    client.close
+    # client.close
     if not @running
       info "Exiting"
       exit
@@ -109,7 +109,7 @@ class Server
     client_name = data.scan(/CLIENT_NAME:(\w+)/).first[0]
     info "Room: #{room_name} Client: #{client_name}"
 
-    join_ret = @chat_room.add_client_to_room(client_name, room_name)
+    join_ret = @chat_room.add_client_to_room(client_name, room_name, client)
 
     text = "JOINED_CHATROOM:#{room_name}\nSERVER_IP:#{@remote_ip}\nPORT:#{@port}\nROOM_REF:1\nJOIN_ID:1\n"
     return text
