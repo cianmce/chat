@@ -66,9 +66,12 @@ class Server
     data = client.gets # Read 1st line from socket
     # data = client.read # Read all data
     info client.peeraddr
+    text = "Unknown"
     if data.start_with?("HELO")
       text = helo(data, client)
     elsif data == "KILL_SERVICE\n"
+      text = "JOIN_CHATROOM:room1"
+    elsif data.start_with?("JOIN_CHATROOM")
       text = kill(data, client)
     else
       text = unknown_message(data, client)
