@@ -65,7 +65,7 @@ class Server
   def handle_request(client)
     # data = client.gets # Read 1st line from socket
 
-    data = client.readpartial(MAX_READ_CHUNK) # Read all data
+    data = client.readpartial(MAX_READ_CHUNK) # Read data
     info "received: #{data}"
 
     # port, ip = client.unpack_sockaddr_in(socket.getpeername)
@@ -77,7 +77,7 @@ class Server
     if data.start_with?("HELO")
       text = helo(data, client)
     elsif data.start_with?("JOIN_CHATROOM")      
-      text = "JOIN_CHATROOM:room1"
+      text = join_room(data, client)
     elsif data == "KILL_SERVICE\n"
       text = kill(data, client)
     else
@@ -92,8 +92,24 @@ class Server
       exit
     end
   end
-    
+
   # Handle different requests
+  # Chat room requests
+  def join_room(data, client):
+    # JOIN_CHATROOM:room1
+    # CLIENT_IP:0
+    # PORT:0
+    # CLIENT_NAME:client1
+
+    # Get room and client name
+    room_id   = data.scan(/JOIN_CHATROOM:(\w+)/).first
+    client_id = data.scan(/CLIENT_NAME:(\w+)/).first
+    info "Room: #{room_id} Client: #{client_id}"
+
+    "JOINED_CHATROOM:#{room_id}"
+  end
+
+  # Old requests
   def helo(data, client)
     text = "#{data}IP:#{@remote_ip}\nPort:#{@port}\nStudentID:#{@student_id}\n"
     return text
