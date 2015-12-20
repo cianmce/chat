@@ -102,6 +102,7 @@ class Server
     # @running = false
     # @socket.close
     text = "Server closing\n"
+    text = ""
     return text
   end
 
