@@ -11,6 +11,7 @@ class Server
     @student_id = student_id
     @local_ip = local_ip
     @remote_ip = open('http://whatismyip.akamai.com').read
+    @chat_room = ChatRoom.new
     info "remote_ip: #{@remote_ip}"
     info 'initialized'
   end
@@ -103,11 +104,14 @@ class Server
     # CLIENT_NAME:client1
 
     # Get room and client name
-    room_id   = data.scan(/JOIN_CHATROOM:(\w+)/).first[0]
-    client_id = data.scan(/CLIENT_NAME:(\w+)/).first[0]
-    info "Room: #{room_id} Client: #{client_id}"
+    room_name   = data.scan(/JOIN_CHATROOM:(\w+)/).first[0]
+    client_name = data.scan(/CLIENT_NAME:(\w+)/).first[0]
+    info "Room: #{room_name} Client: #{client_name}"
 
-    return "JOINED_CHATROOM:#{room_id}"
+    join_ret = chat_room.add_client_to_room(client_name, room_name)
+
+    text = "JOINED_CHATROOM:#{room_name}\nSERVER_IP:#{@remote_ip}\nPort:#{@port}\nROOM_REF:#{join_ret[:room_ref]}\nJOIN_ID:#{join_ret[:join_id]}"
+    return text
   end
 
   # Old requests
