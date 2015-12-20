@@ -78,6 +78,7 @@ class Server
     end
     # Force delay
     # sleep(0.5)
+    info "returning: '#{text}'"
     client.puts text
     client.close
     if not @running
@@ -89,13 +90,11 @@ class Server
   def helo(data, client)
     info "received HELO"
     text = "#{data}IP:#{@remote_ip}\nPort:#{@port}\nStudentID:#{@student_id}\n"
-    info "returning: '#{text}'"
     return text
   end
   def unknown_message(data, client)
     text = "Unknown message[#{data.length}]: '#{data}'"
     info text
-    info "returning: '#{text}'"
     return text
   end
   def kill(data, client)
@@ -103,7 +102,6 @@ class Server
     @running = false
     @socket.close
     text = "Server closing\n"
-    info "returning: '#{text}'"
     return text
   end
 
