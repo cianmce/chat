@@ -23,8 +23,9 @@ MESSAGE:#{message}\n\n"
       puts "Sending to CL: #{client} '#{text}'"
       begin
         socket.puts text
-      rescue
+      rescue Exception => e
         puts "Error senfing"
+        puts e
       end
     end
   end
