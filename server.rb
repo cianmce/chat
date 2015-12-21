@@ -136,7 +136,7 @@ class Server
     info "room_ref: #{room_ref}, join_id: #{join_id}, client_name: #{client_name}"
     info "client_name.hash #{client_name.hash}"
 
-    remove_client_from_room()
+    @chat_room.remove_client_from_room(client_name, room_ref)
     
     client.puts "LEFT_CHATROOM:#{room_ref}
 JOIN_ID:#{join_id}"
