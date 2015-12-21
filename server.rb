@@ -68,7 +68,7 @@ class Server
     # data = client.gets # Read 1st line from socket
 
     data = client.readpartial(MAX_READ_CHUNK) # Read data
-    info "received: #{data}"
+    info "          ----------received: #{data}----------"
 
     # port, ip = client.unpack_sockaddr_in(socket.getpeername)
     # info "port: #{port} IP: #{ip}"
@@ -122,6 +122,7 @@ class Server
     info "Sending: #{text}"
     sleep(2)
     @chat_room.message_chat_room(join_ret[:room_ref], text)
+    client.puts "\n"
     return
   end
 
