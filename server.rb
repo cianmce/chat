@@ -134,7 +134,9 @@ class Server
     client_name = data.scan(/CLIENT_NAME:(..\w+)/).first[0].strip!
 
     info "room_ref: #{room_ref}, join_id: #{join_id}, client_name: #{client_name}"
+    info "client_name.hash #{client_name.hash}"
 
+    remove_client_from_room()
     
     client.puts "LEFT_CHATROOM:#{room_ref}
 JOIN_ID:#{join_id}"
