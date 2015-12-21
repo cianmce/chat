@@ -14,7 +14,7 @@ class ChatRoom
     # Sends message to every client in room
 
     puts "Sending to RM '#{room_ref}': '#{message}'"
-    sleep(0.5)
+
     clients_in_room = @rooms[room_ref][:clients]
     clients_in_room.each do |client|
       socket = @clients[client]
