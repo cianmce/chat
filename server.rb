@@ -123,7 +123,14 @@ class Server
     info "got data: #{data}"
 
     # Get room_ref and join_id as int
-    room_ref    = data.scan(/LEAVE_CHATROOM:(\d+)/).first[0].to_i
+    begin
+      room_ref    = data.scan(/LEAVE_CHATROOM:(\d+)/).first[0].to_i
+      puts room_ref
+    rescue Exception => e
+      puts "\n\nErorr:"
+      puts e
+    end
+
     join_id     = data.scan(/JOIN_ID:(\d+)/).first[0].to_i
     # client_name as string, strip whitespace
     client_name = data.scan(/CLIENT_NAME:(\w+)/).first[0].strip!
