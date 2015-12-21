@@ -71,7 +71,8 @@ class Server
 
     while true
       # sleep(0.05)
-      info "Reading[#{Thread.current['id']}]..."
+      tid = Thread.current['id']
+      info "Reading[#{tid}]..."
       line = client.gets
       # data = client.readpartial(MAX_READ_CHUNK) # Read data
       info "Read"
