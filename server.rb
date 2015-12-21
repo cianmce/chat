@@ -120,6 +120,8 @@ class Server
     data += client.gets # JOIN_ID
     data += client.gets # CLIENT_NAME
 
+    info "got data: #{data}"
+
     # Get room_ref and join_id as int
     room_ref    = data.scan(/LEAVE_CHATROOM:(\w+)/).first[0].to_i
     join_id     = data.scan(/JOIN_ID:(\w+)/).first[0].to_i
