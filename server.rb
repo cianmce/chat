@@ -5,7 +5,7 @@ require_relative 'chatroom'
 
 
 class Server
-  MAX_READ_CHUNK = 1024
+  MAX_READ_CHUNK = 2048
   def initialize(logger, student_id)
     @logger     = logger
     @student_id = student_id
@@ -47,7 +47,9 @@ class Server
     info 'all threads started'
     while @running
       begin
+        puts "\t\t\tWaiting"
         work_q.push(@socket.accept)
+        puts "\t\t\tGot one!"
       rescue IOError
         # Socket closed by kill function
         puts 'Closed'
@@ -113,7 +115,7 @@ class Server
     join_ret = @chat_room.add_client_to_room(client_name, room_name, client)
 
     text = "JOINED_CHATROOM:#{room_name}\nSERVER_IP:#{@remote_ip}\nPORT:#{@port}\nROOM_REF:#{join_ret[:room_ref]}\nJOIN_ID:#{join_ret[:join_id]}\n"
-    info "Sending JOINED_CHATROOM"
+
     client.puts text
     # Send message to chat room
     info "Sending join message to chatroom"
