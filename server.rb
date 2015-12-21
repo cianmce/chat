@@ -74,11 +74,10 @@ class Server
       info "Reading..."
       data = ""
       line = ""
-      begin
-        line = client.gets
+      while line = s.gets # Read lines from socket
+        puts line         # and print them
         data += line
-        puts "data: #{data}, line: #{line}"
-      end while not line.empty?
+      end
       # data = client.readpartial(MAX_READ_CHUNK) # Read data
       info "Read"
       info "          ----------received: #{data}----------"
