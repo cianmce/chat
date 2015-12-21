@@ -15,15 +15,15 @@ class ChatRoom
 
     puts "Sending '#{message}' to: #{room_ref}"
 
-    clients = @rooms[room_ref][:clients]
+#     clients = @rooms[room_ref][:clients]
     
-    clients.each do |client, socket|
-      text = "CHAT:#{room_ref}
-CLIENT_NAME:#{client}
-MESSAGE:#{message}\n\n"
-      puts "Sending '#{text}' to: #{client}"
-      socket.puts text
-    end
+#     clients.each do |client, socket|
+#       text = "CHAT:#{room_ref}
+# CLIENT_NAME:#{client}
+# MESSAGE:#{message}\n\n"
+#       puts "Sending '#{text}' to: #{client}"
+#       socket.puts text
+#     end
   end
 
   def get_client_id(client_name, client_socket)
