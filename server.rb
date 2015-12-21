@@ -123,7 +123,7 @@ class Server
     info "got data: #{data}"
 
     # Get room_ref and join_id as int
-    room_ref    = data.scan(/LEAVE_CHATROOM:(\w+)/).first[0].to_i
+    room_ref    = data.scan(/LEAVE_CHATROOM:(\w+)/).first[0]
     info "room_ref: #{room_ref}"
     join_id     = data.scan(/JOIN_ID:(\w+)/).first[0].to_i
     # client_name as string, strip whitespace
