@@ -56,8 +56,10 @@ MESSAGE:#{message}\n\n"
         :clients => []
       }
     end
-
-    @rooms[room_ref][:clients].push(client_name)
+    puts "Checking if need to add to room"
+    unless @rooms[room_ref][:clients].include?(client_name)
+      @rooms[room_ref][:clients].push(client_name)
+    end
     return {:room_ref => room_ref, :join_id => client_id}
   end
 

@@ -169,6 +169,7 @@ class Server
 
     text = "JOINED_CHATROOM:#{room_name}\nSERVER_IP:#{@remote_ip}\nPORT:#{@port}\nROOM_REF:#{join_ret[:room_ref]}\nJOIN_ID:#{join_ret[:join_id]}\n"
 
+    info "Sending JOINED_CHATROOM:#{room_name}"
     client.puts text
     # Send message to chat room
     info "Sending join message to chatroom"
