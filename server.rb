@@ -120,8 +120,7 @@ class Server
     info "Sending join message to chatroom"
     text = "client1 has joined this chatroom.\n\n"
     info "Sending: #{text}"
-    @chat_room.message_chat_room(room_ref, text)
-    info "Sent!!"
+    @chat_room.message_chat_room(join_ret[:room_ref], text)
     return
   end
 
