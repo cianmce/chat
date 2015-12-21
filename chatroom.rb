@@ -13,7 +13,7 @@ class ChatRoom
   def message_chat_room(room_ref, message)
     # Sends message to every client in room
 
-    puts "Sending '#{message}' to: #{room_ref}"
+    # puts "Sending '#{message}' to: #{room_ref}"
 
 #     clients = @rooms[room_ref][:clients]
     
