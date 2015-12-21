@@ -113,7 +113,7 @@ class Server
 
     join_ret = @chat_room.add_client_to_room(client_name, room_name, client)
 
-    text = "JOINED_CHATROOM:#{room_name}\nSERVER_IP:#{@remote_ip}\nPORT:#{@port}\nROOM_REF:1\nJOIN_ID:1\n"
+    text = "JOINED_CHATROOM:#{join_ret[:room_ref]}\nSERVER_IP:#{@remote_ip}\nPORT:#{@port}\nROOM_REF:1\nJOIN_ID:1\n"
     info "Sending JOINED_CHATROOM"
     client.puts text
     # Send message to chat room
