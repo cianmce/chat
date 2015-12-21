@@ -147,7 +147,7 @@ class Server
     client.puts text
 
     message = "#{client_name} has left the chatroom."
-    @chat_room.message_chat_room(room_ref, message)
+    @chat_room.message_chat_room(room_ref, message, client_name)
   end
 
   def join_room(data, client)
@@ -174,7 +174,7 @@ class Server
     info "Sending join message to chatroom"
     text = "#{client_name} has joined this chatroom."
     info "Sending: #{text}"
-    @chat_room.message_chat_room(join_ret[:room_ref], text)
+    @chat_room.message_chat_room(join_ret[:room_ref], text, client_name)
     info "done join_room()"
     return
   end

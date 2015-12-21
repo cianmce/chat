@@ -10,7 +10,7 @@ class ChatRoom
 
   end
 
-  def message_chat_room(room_ref, message)
+  def message_chat_room(room_ref, message, client_name)
     # Sends message to every client in room
 
     puts "Sending to RM '#{room_ref}': '#{message}'"
@@ -19,7 +19,7 @@ class ChatRoom
     clients_in_room.each do |client|
       socket = @clients[client]
       text = "CHAT:#{room_ref}
-CLIENT_NAME:#{client}
+CLIENT_NAME:#{client_name}
 MESSAGE:#{message}\n\n"
       puts "Sending to CL: #{client} '#{text}'"
       begin
