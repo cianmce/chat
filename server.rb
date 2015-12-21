@@ -77,6 +77,7 @@ class Server
       begin
         line = client.gets
         data += line
+        puts "data: #{data}, line: #{line}"
       end while not line.empty?
       # data = client.readpartial(MAX_READ_CHUNK) # Read data
       info "Read"
