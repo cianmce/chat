@@ -118,7 +118,8 @@ class Server
     client.puts text
     # Send message to chat room
     info "Sending join message to chatroom"
-    @chat_room.message_chat_room(room_ref, "client1 has joined this chatroom.\n\n")
+    client.puts "client1 has joined this chatroom.\n\n"
+    # @chat_room.message_chat_room(room_ref, "client1 has joined this chatroom.\n\n")
     return
   end
 
