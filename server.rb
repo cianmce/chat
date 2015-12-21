@@ -80,8 +80,7 @@ class Server
       text = helo(data, client)
     elsif data.start_with?("JOIN_CHATROOM")
       # Change to return!!!
-      text = join_room(data, client)
-      client.puts text
+      join_room(data, client)
       return
     elsif data == "KILL_SERVICE\n"
       text = kill(data, client)
@@ -115,7 +114,12 @@ class Server
     join_ret = @chat_room.add_client_to_room(client_name, room_name, client)
 
     text = "JOINED_CHATROOM:#{room_name}\nSERVER_IP:#{@remote_ip}\nPORT:#{@port}\nROOM_REF:1\nJOIN_ID:1\n"
-    return text
+    info "Sending JOINED_CHATROOM"
+    client.puts = text
+    # Send message to chat room
+    info "Sending join message to chatroom"
+    @chat_room.message_chat_room(room_ref, "client1 has joined this chatroom.\n\n")
+    return
   end
 
   # Old requests
