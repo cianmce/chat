@@ -75,8 +75,7 @@ class Server
       info "Reading[#{tid}]..."
       line = client.gets
       # data = client.readpartial(MAX_READ_CHUNK) # Read data
-      info "Read"
-      info "          ----------received: #{line}----------"
+      info "          ----------received: '#{line}'----------"
 
       # port, ip = client.unpack_sockaddr_in(socket.getpeername)
       # info "port: #{port} IP: #{ip}"
@@ -173,7 +172,7 @@ class Server
     client.puts text
     # Send message to chat room
     info "Sending join message to chatroom"
-    text = "client1 has joined this chatroom."
+    text = "#{client_name} has joined this chatroom."
     info "Sending: #{text}"
     @chat_room.message_chat_room(join_ret[:room_ref], text)
     info "done join_room()"
