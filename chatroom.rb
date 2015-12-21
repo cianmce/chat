@@ -21,7 +21,11 @@ class ChatRoom
 CLIENT_NAME:#{client}
 MESSAGE:#{message}\n\n"
       puts "Sending to CL: #{client} '#{text}'"
-      socket.puts text
+      begin
+        socket.puts text
+      rescue
+        puts "Error senfing"
+      end
     end
   end
 
