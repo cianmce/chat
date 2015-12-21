@@ -28,7 +28,9 @@ MESSAGE:#{message}\n\n"
         puts "Error senfing"
         puts e
       end
+      puts "sent"
     end
+    puts "ALL SENT!"
   end
 
   def get_client_id(client_name, client_socket)
