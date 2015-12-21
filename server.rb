@@ -70,8 +70,10 @@ class Server
     # data = client.gets # Read 1st line from socket
 
     while true
-      sleep(0.05)
+      # sleep(0.05)
+      info "Reading..."
       data = client.readpartial(MAX_READ_CHUNK) # Read data
+      info "Read"
       info "          ----------received: #{data}----------"
 
       # port, ip = client.unpack_sockaddr_in(socket.getpeername)
