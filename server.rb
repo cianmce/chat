@@ -78,18 +78,21 @@ class Server
     text = "Unknown"
     if data.start_with?("HELO")
       text = helo(data, client)
-    elsif data.start_with?("JOIN_CHATROOM")      
+    elsif data.start_with?("JOIN_CHATROOM")
+      # Change to return!!!
       text = join_room(data, client)
+      client.puts text
+      return
     elsif data == "KILL_SERVICE\n"
       text = kill(data, client)
     else
       text = unknown_message(data, client)
     end
     # Force delay
-    sleep(0.5)
+    # sleep(0.5)
     info "returning: '#{text}'"
     client.puts text
-    # client.close
+    client.close
     if not @running
       info "Exiting"
       exit

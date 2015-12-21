@@ -51,7 +51,7 @@ MESSAGE:#{message}\n\n"
     @rooms[room_ref][:clients].push(client_name)
     puts "Sending join message to chatroom"
     message_chat_room(room_ref, "client1 has joined this chatroom.\n\n")
-    {:room_ref => room_ref, :join_id => client_id}
+    return {:room_ref => room_ref, :join_id => client_id}
   end
 
   def info
