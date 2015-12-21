@@ -92,7 +92,7 @@ class Server
 
     info "returning: '#{text}'"
     client.puts text
-    client.close
+    # client.close
     if not @running
       info "Exiting"
       exit
