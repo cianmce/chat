@@ -121,6 +121,7 @@ class Server
     info "Sending: #{text}"
     @chat_room.message_chat_room(join_ret[:room_ref], text)
     client.close
+    info "done join_room()"
     return
   end
 
