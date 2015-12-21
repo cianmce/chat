@@ -87,8 +87,7 @@ class Server
     else
       text = unknown_message(data, client)
     end
-    # Force delay
-    # sleep(0.5)
+
     info "returning: '#{text}'"
     client.puts text
     # client.close
@@ -120,7 +119,6 @@ class Server
     info "Sending join message to chatroom"
     text = "client1 has joined this chatroom."
     info "Sending: #{text}"
-    sleep(2)
     @chat_room.message_chat_room(join_ret[:room_ref], text)
     client.puts "\n"
     return
