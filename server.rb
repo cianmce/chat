@@ -80,7 +80,14 @@ class Server
 
       # port, ip = client.unpack_sockaddr_in(socket.getpeername)
       # info "port: #{port} IP: #{ip}"
-      info "Client: (#{client.peeraddr[2]}) #{client.peeraddr[3]}"
+
+      begin
+        info "Client: (#{client.peeraddr[2]}) #{client.peeraddr[3]}"
+          
+      rescue Exception => e
+        info "Error getting client address"
+        info e
+      end
 
 
       begin     
