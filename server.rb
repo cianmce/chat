@@ -35,7 +35,7 @@ class Server
               client = work_q.pop
               handle_request(client)
             else
-              # sleep(0.05)
+              sleep(0.05)
             end
           end
         rescue ThreadError
