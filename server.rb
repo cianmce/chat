@@ -91,10 +91,12 @@ class Server
         text = kill(data, client)
         info "returning: '#{text}'"
         client.puts text
+        client.close
       else
         text = unknown_message(data, client)
         info "returning: '#{text}'"
         client.puts text
+        client.close
       end
 
       if not @running
