@@ -87,6 +87,8 @@ class Server
       
       if line.start_with?("JOIN_CHATROOM")
         join_room(line, client)
+      elsif line.start_with?("LEAVE_CHATROOM")
+        leave_room(line, client)
       elsif line.start_with?("HELO")
         text = helo(line, client)
         client.puts text
@@ -111,6 +113,14 @@ class Server
 
   # Handle different requests
   # Chat room requests
+
+  def leave_room(data, client)
+    info "Leaving room: #{data}"
+    
+    client.puts "LEFT_CHATROOM: [ROOM_REF]
+JOIN_ID: [integer previously provided by server on join]"
+  end
+
   def join_room(data, client)
     # JOIN_CHATROOM:room1
     # CLIENT_IP:0
