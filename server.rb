@@ -90,7 +90,7 @@ class Server
 
     info "returning: '#{text}'"
     client.puts text
-    # client.close
+    client.close
     if not @running
       info "Exiting"
       exit
@@ -120,8 +120,7 @@ class Server
     text = "client1 has joined this chatroom."
     info "Sending: #{text}"
     @chat_room.message_chat_room(join_ret[:room_ref], text)
-    client.puts "LEFT_CHATROOM:#{join_ret[:room_ref]}
-JOIN_ID:#{join_ret[:join_id]}\n"
+    client.close
     return
   end
 
