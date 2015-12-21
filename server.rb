@@ -121,7 +121,7 @@ class Server
     info "Sending: #{text}"
     @chat_room.message_chat_room(join_ret[:room_ref], text)
     client.puts "LEFT_CHATROOM:#{join_ret[:room_ref]}
-JOIN_ID:#{join_ret[:join_id]}"
+JOIN_ID:#{join_ret[:join_id]}\n"
     return
   end
 
