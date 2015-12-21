@@ -88,7 +88,7 @@ class Server
       #   info e
       # end
 
-      unless line.strip!.empty?
+      unless line.empty?
         begin     
           
           if line.start_with?("JOIN_CHATROOM")
