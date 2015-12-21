@@ -84,12 +84,12 @@ class Server
 
 
       text = "Unknown"
-      if line.start_with?("HELO")
-        client.gets
-        text = helo(line, client)
-      elsif line.start_with?("JOIN_CHATROOM")
-        # Change to return!!!
+      
+      if line.start_with?("JOIN_CHATROOM")
         join_room(line, client)
+      elsif line.start_with?("HELO")
+        text = helo(line, client)
+        client.puts text
       elsif line == "KILL_SERVICE\n"
         text = kill(line, client)
         info "returning: '#{text}'"
