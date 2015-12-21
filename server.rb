@@ -121,6 +121,7 @@ class Server
     text = "client1 has joined this chatroom.\n\n"
     info "Sending: #{text}"
     @chat_room.message_chat_room(room_ref, text)
+    info "Sent!!"
     return
   end
 
