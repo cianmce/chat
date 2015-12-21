@@ -74,7 +74,8 @@ class Server
       info "Reading..."
       data = ""
       line = ""
-      while line = s.gets # Read lines from socket
+      while line = client.gets # Read lines from socket
+        puts "line:"
         puts line         # and print them
         data += line
       end
