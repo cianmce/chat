@@ -85,6 +85,7 @@ class Server
 
       text = "Unknown"
       if line.start_with?("HELO")
+        client.gets
         text = helo(line, client)
       elsif line.start_with?("JOIN_CHATROOM")
         # Change to return!!!
