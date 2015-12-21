@@ -60,6 +60,10 @@ MESSAGE:#{message}\n\n"
     return {:room_ref => room_ref, :join_id => client_id}
   end
 
+  def remove_client_from_room(client_name, room_ref)
+    
+  end
+
   def info
     pp @clients
     pp @rooms

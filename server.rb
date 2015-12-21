@@ -116,9 +116,21 @@ class Server
 
   def leave_room(data, client)
     info "Leaving room: #{data}"
+
+    data += client.gets # JOIN_ID
+    data += client.gets # CLIENT_NAME
+
+    # Get room_ref and join_id as int
+    room_ref    = data.scan(/LEAVE_CHATROOM:(\w+)/).first[0].to_i
+    join_id     = data.scan(/JOIN_ID:(\w+)/).first[0].to_i
+    # client_name as string, strip whitespace
+    client_name = data.scan(/CLIENT_NAME:(\w+)/).first[0].strip!
+
+    info "room_ref: #{room_ref}, join_id: #{join_id}, client_name: #{client_name}"
+
     
-    client.puts "LEFT_CHATROOM: [ROOM_REF]
-JOIN_ID: [integer previously provided by server on join]"
+    client.puts "LEFT_CHATROOM:#{room_ref}
+JOIN_ID:#{join_id}"
   end
 
   def join_room(data, client)
