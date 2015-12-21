@@ -72,13 +72,7 @@ class Server
     while true
       # sleep(0.05)
       info "Reading..."
-      data = ""
-      line = ""
-      while line = client.gets # Read lines from socket
-        puts "line:"
-        puts line         # and print them
-        data += line
-      end
+      line = client.gets
       # data = client.readpartial(MAX_READ_CHUNK) # Read data
       info "Read"
       info "          ----------received: #{data}----------"
@@ -89,18 +83,18 @@ class Server
 
 
       text = "Unknown"
-      if data.start_with?("HELO")
-        text = helo(data, client)
-      elsif data.start_with?("JOIN_CHATROOM")
+      if line.start_with?("HELO")
+        text = helo(line, client)
+      elsif line.start_with?("JOIN_CHATROOM")
         # Change to return!!!
-        join_room(data, client)
-      elsif data == "KILL_SERVICE\n"
-        text = kill(data, client)
+        join_room(line, client)
+      elsif line == "KILL_SERVICE\n"
+        text = kill(line, client)
         info "returning: '#{text}'"
         client.puts text
         client.close
       else
-        text = unknown_message(data, client)
+        text = unknown_message(line, client)
         info "returning: '#{text}'"
         client.puts text
         client.close
@@ -120,6 +114,9 @@ class Server
     # CLIENT_IP:0
     # PORT:0
     # CLIENT_NAME:client1
+    data += client.gets # CLIENT_IP
+    data += client.gets # PORT
+    data += client.gets # CLIENT_NAME
 
     # Get room and client name
     room_name   = data.scan(/JOIN_CHATROOM:(\w+)/).first[0]
