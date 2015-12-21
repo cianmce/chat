@@ -15,9 +15,9 @@ class ChatRoom
 
     puts "Sending to RM '#{room_ref}': '#{message}'"
 
-    clients = @rooms[room_ref][:clients]
-    clients.each do |client|
-      socket = @clients[client_name]
+    clients_in_room = @rooms[room_ref][:clients]
+    clients_in_room.each do |client|
+      socket = @clients[client]
       text = "CHAT:#{room_ref}
 CLIENT_NAME:#{client}
 MESSAGE:#{message}\n\n"
