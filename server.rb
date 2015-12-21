@@ -91,7 +91,7 @@ class Server
     # sleep(0.5)
     info "returning: '#{text}'"
     client.puts text
-    client.close
+    # client.close
     if not @running
       info "Exiting"
       exit
@@ -118,8 +118,8 @@ class Server
     client.puts text
     # Send message to chat room
     info "Sending join message to chatroom"
-    client.puts "client1 has joined this chatroom.\n\n"
-    # @chat_room.message_chat_room(room_ref, "client1 has joined this chatroom.\n\n")
+    # client.puts "client1 has joined this chatroom.\n\n"
+    @chat_room.message_chat_room(room_ref, "client1 has joined this chatroom.\n\n")
     return
   end
 
