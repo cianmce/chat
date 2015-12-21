@@ -137,8 +137,11 @@ class Server
 
     @chat_room.remove_client_from_room(client_name, room_ref)
     
-    client.puts "LEFT_CHATROOM:#{room_ref}
-JOIN_ID:#{join_id}"
+    text = "LEFT_CHATROOM:#{room_ref}\nJOIN_ID:#{join_id}"
+    client.puts text
+
+    message = "#{client_name} has left the chatroom."
+    @chat_room.message_chat_room(room_ref, message)
   end
 
   def join_room(data, client)

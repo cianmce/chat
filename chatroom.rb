@@ -62,6 +62,9 @@ MESSAGE:#{message}\n\n"
 
   def remove_client_from_room(client_name, room_ref)
     puts "Removing '#{client_name}' from '#{room_ref}'"
+
+    # remove client if in the room
+    @rooms[room_ref][:clients] - [client_name]    
   end
 
   def info
