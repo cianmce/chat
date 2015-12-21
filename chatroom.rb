@@ -40,6 +40,7 @@ MESSAGE:#{message}\n\n"
     unless @clients.include?(client_name)
       @clients[client_name] = client_socket
     end
+    puts "returning: #{client_name.hash}"
     client_name.hash
   end
 
