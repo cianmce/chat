@@ -61,7 +61,7 @@ MESSAGE:#{message}\n\n"
   end
 
   def remove_client_from_room(client_name, room_ref)
-    
+    puts "Removing '#{client_name}' from '#{room_ref}'"
   end
 
   def info
