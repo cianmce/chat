@@ -33,7 +33,7 @@ class Server
           while @running
             if work_q.length > 0
               client = work_q.pop
-              handle_request(client)
+              handle_request(client, Thread.current['id'])
             else
               sleep(0.05)
             end
@@ -66,12 +66,12 @@ class Server
     @logger.info msg
   end
 
-  def handle_request(client)
+  def handle_request(client, tid)
     # data = client.gets # Read 1st line from socket
 
     while true
       # sleep(0.05)
-      info "Reading..."
+      info "Reading[#{tid}]..."
       line = client.gets
       # data = client.readpartial(MAX_READ_CHUNK) # Read data
       info "Read"
