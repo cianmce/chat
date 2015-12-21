@@ -72,7 +72,13 @@ class Server
     while true
       # sleep(0.05)
       info "Reading..."
-      data = client.readpartial(MAX_READ_CHUNK) # Read data
+      data = ""
+      line = ""
+      begin
+        line = client.gets
+        data += line
+      end while not line.empty?
+      # data = client.readpartial(MAX_READ_CHUNK) # Read data
       info "Read"
       info "          ----------received: #{data}----------"
 
