@@ -88,32 +88,33 @@ class Server
       #   info e
       # end
 
+      if line.strip!.empty?
+        begin     
+          
+          if line.start_with?("JOIN_CHATROOM")
+            join_room(line, client)
+          elsif line.start_with?("LEAVE_CHATROOM")
+            leave_room(line, client)
+          elsif line.start_with?("HELO")
+            text = helo(line, client)
+            client.puts text
+          elsif line == "KILL_SERVICE\n"
+            text = kill(line, client)
+            info "returning: '#{text}'"
+            client.puts text
+            client.close
+          else
+            text = unknown_message(line, client)
+            info "returning: '#{text}'"
+            client.puts text
+            client.close
+          end
 
-      begin     
-        
-        if line.start_with?("JOIN_CHATROOM")
-          join_room(line, client)
-        elsif line.start_with?("LEAVE_CHATROOM")
-          leave_room(line, client)
-        elsif line.start_with?("HELO")
-          text = helo(line, client)
-          client.puts text
-        elsif line == "KILL_SERVICE\n"
-          text = kill(line, client)
-          info "returning: '#{text}'"
-          client.puts text
-          client.close
-        else
-          text = unknown_message(line, client)
-          info "returning: '#{text}'"
-          client.puts text
-          client.close
-        end
-
-      rescue Exception => e
-        info "\n\n\t\tERROR in handle_request:"
-        info e
-      end 
+        rescue Exception => e
+          info "\n\n\t\tERROR in handle_request:"
+          info e
+        end 
+      end
 
       if not @running
         info "Exiting"
