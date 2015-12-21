@@ -83,26 +83,31 @@ class Server
       info "Client: (#{client.peeraddr[2]}) #{client.peeraddr[3]}"
 
 
-      text = "Unknown"
-      
-      if line.start_with?("JOIN_CHATROOM")
-        join_room(line, client)
-      elsif line.start_with?("LEAVE_CHATROOM")
-        leave_room(line, client)
-      elsif line.start_with?("HELO")
-        text = helo(line, client)
-        client.puts text
-      elsif line == "KILL_SERVICE\n"
-        text = kill(line, client)
-        info "returning: '#{text}'"
-        client.puts text
-        client.close
-      else
-        text = unknown_message(line, client)
-        info "returning: '#{text}'"
-        client.puts text
-        client.close
-      end
+      begin     
+        
+        if line.start_with?("JOIN_CHATROOM")
+          join_room(line, client)
+        elsif line.start_with?("LEAVE_CHATROOM")
+          leave_room(line, client)
+        elsif line.start_with?("HELO")
+          text = helo(line, client)
+          client.puts text
+        elsif line == "KILL_SERVICE\n"
+          text = kill(line, client)
+          info "returning: '#{text}'"
+          client.puts text
+          client.close
+        else
+          text = unknown_message(line, client)
+          info "returning: '#{text}'"
+          client.puts text
+          client.close
+        end
+
+      rescue Exception => e
+        info "\n\n\t\tERROR in handle_request:"
+        info e
+      end 
 
       if not @running
         info "Exiting"
@@ -124,15 +129,9 @@ class Server
 
     # Get room_ref and join_id as int
     room_ref    = data.scan(/LEAVE_CHATROOM:(..\d+)/).first[0].to_i
-    begin
     join_id     = data.scan(/JOIN_ID:(..\d+)/).first[0].to_i
     # client_name as string, strip whitespace
     client_name = data.scan(/CLIENT_NAME:(..\w+)/).first[0].strip!
-
-    rescue Exception => e
-      puts "\n\nErorro:"
-      puts e
-    end
 
     info "room_ref: #{room_ref}, join_id: #{join_id}, client_name: #{client_name}"
 
