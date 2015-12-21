@@ -75,7 +75,7 @@ class Server
       line = client.gets
       # data = client.readpartial(MAX_READ_CHUNK) # Read data
       info "Read"
-      info "          ----------received: #{data}----------"
+      info "          ----------received: #{line}----------"
 
       # port, ip = client.unpack_sockaddr_in(socket.getpeername)
       # info "port: #{port} IP: #{ip}"
