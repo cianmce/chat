@@ -69,33 +69,36 @@ class Server
   def handle_request(client)
     # data = client.gets # Read 1st line from socket
 
-    data = client.readpartial(MAX_READ_CHUNK) # Read data
-    info "          ----------received: #{data}----------"
+    while true
+      sleep(0.05)
+      data = client.readpartial(MAX_READ_CHUNK) # Read data
+      info "          ----------received: #{data}----------"
 
-    # port, ip = client.unpack_sockaddr_in(socket.getpeername)
-    # info "port: #{port} IP: #{ip}"
-    info "Client: (#{client.peeraddr[2]}) #{client.peeraddr[3]}"
+      # port, ip = client.unpack_sockaddr_in(socket.getpeername)
+      # info "port: #{port} IP: #{ip}"
+      info "Client: (#{client.peeraddr[2]}) #{client.peeraddr[3]}"
 
 
-    text = "Unknown"
-    if data.start_with?("HELO")
-      text = helo(data, client)
-    elsif data.start_with?("JOIN_CHATROOM")
-      # Change to return!!!
-      join_room(data, client)
-      return
-    elsif data == "KILL_SERVICE\n"
-      text = kill(data, client)
-    else
-      text = unknown_message(data, client)
-    end
+      text = "Unknown"
+      if data.start_with?("HELO")
+        text = helo(data, client)
+      elsif data.start_with?("JOIN_CHATROOM")
+        # Change to return!!!
+        join_room(data, client)
+        return
+      elsif data == "KILL_SERVICE\n"
+        text = kill(data, client)
+      else
+        text = unknown_message(data, client)
+      end
 
-    info "returning: '#{text}'"
-    client.puts text
-    # client.close
-    if not @running
-      info "Exiting"
-      exit
+      info "returning: '#{text}'"
+      client.puts text
+      # client.close
+      if not @running
+        info "Exiting"
+        exit
+      end
     end
   end
 
