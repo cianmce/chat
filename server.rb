@@ -131,7 +131,7 @@ class Server
 
     rescue Exception => e
       puts "\n\nErorro:"
-      pputs e
+      puts e
     end
 
     info "room_ref: #{room_ref}, join_id: #{join_id}, client_name: #{client_name}"
