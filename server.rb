@@ -87,16 +87,16 @@ class Server
       elsif data.start_with?("JOIN_CHATROOM")
         # Change to return!!!
         join_room(data, client)
-        return
       elsif data == "KILL_SERVICE\n"
         text = kill(data, client)
+        info "returning: '#{text}'"
+        client.puts text
       else
         text = unknown_message(data, client)
+        info "returning: '#{text}'"
+        client.puts text
       end
 
-      info "returning: '#{text}'"
-      client.puts text
-      # client.close
       if not @running
         info "Exiting"
         exit
