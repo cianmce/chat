@@ -20,7 +20,7 @@ class ChatRoom
       socket = @clients[client]
       text = "CHAT:#{room_ref}
 CLIENT_NAME:#{client}
-MESSAGE:#{message}\n\n\n\n"
+MESSAGE:#{message}\n\n"
       puts "Sending to CL: #{client} '#{text}'"
       begin
         socket.puts text
