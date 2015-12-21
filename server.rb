@@ -83,7 +83,6 @@ class Server
 
       begin
         info "Client: (#{client.peeraddr[2]}) #{client.peeraddr[3]}"
-          
       rescue Exception => e
         info "Error getting client address"
         info e
