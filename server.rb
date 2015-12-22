@@ -138,13 +138,6 @@ class Server
     client_name = data.scan(/CLIENT_NAME:(..\w+)/).first[0].strip
     info "client_name: '#{client_name}'"
 
-    message = "#{client_name} has left the chatroom."
-
-    @chat_room.rooms.each do |room_ref|
-      @chat_room.message_chat_room(room_ref, message, client_name)
-      @chat_room.remove_client_from_room(client_name, room_ref)
-    end
-
     @chat_room.remove_client(client_name)
   end
   def send_chat(data, client)
