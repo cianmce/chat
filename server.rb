@@ -229,7 +229,7 @@ class Server
     info "Killing"
     @running = false
     @chat_room.close
-    @socket.close
+    # @socket.close
     @socket.shutdown(Socket::SHUT_WR)
     text = "Server closing\n"
     return text
