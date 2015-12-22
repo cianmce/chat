@@ -21,7 +21,7 @@ class ChatRoom
       text = "CHAT:#{room_ref}
 CLIENT_NAME:#{client_name}
 MESSAGE:#{message}\n\n"
-      puts "Sending to CL: #{client} '#{text}'"
+      puts "Sending to Client: #{client} '#{text}'"
       begin
         socket.puts text
       rescue Exception => e
