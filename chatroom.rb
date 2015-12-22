@@ -10,6 +10,17 @@ class ChatRoom
 
   end
 
+  def remove_client(client_name)
+    puts "removing client: '#{client_name}'"
+    socket = @clients.delete(client_name)
+    unless socket.nil?
+      puts "Closing socket"
+      socket.close
+    end
+    puts "Removed"
+    info
+  end
+
   def message_chat_room(room_ref, message, client_name)
     # Sends message to every client in room
 

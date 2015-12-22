@@ -96,6 +96,8 @@ class Server
             leave_room(line, client)
           elsif line.start_with?("CHAT")
             send_chat(line, client)
+          elsif line.start_with?("DISCONNECT")
+            send_chat(line, client)
           elsif line.start_with?("HELO")
             text = helo(line, client)
             client.puts text
@@ -126,11 +128,24 @@ class Server
 
   # Handle different requests
   # Chat room requests
+
+  def disconnect_client(data, client)
+    info "disconnecting: '#{data}"
+    data += client.gets # PORT
+    data += client.gets # CLIENT_NAME
+    info "got data: '#{data}'"
+
+    client_name = data.scan(/CLIENT_NAME:(..\w+)/).first[0].strip!
+    info "client_name: '#{client_name}'"
+
+
+    @chat_room.remove_client(client_name)
+  end
   def send_chat(data, client)
     info "Sending chat: #{data}"
     data += client.gets # JOIN_ID
     data += client.gets # CLIENT_NAME
-    data += client.gets # CLIENT_NAME
+    data += client.gets # MESSAGE
     data += client.gets # MESSAGE
     info "got data: '#{data}'"
     room_ref    = data.scan(/CHAT:(..\d+)/).first[0].to_i
