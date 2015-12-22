@@ -68,13 +68,15 @@ MESSAGE:#{message}\n\n"
 
     # remove client if in the room
     @rooms[room_ref][:clients] - [client_name]
-    puts "\n\nRemoved:"
+    puts "\n\nRemoved '#{client_name}':"
+    puts @rooms[room_ref][:clients]
+    puts "\n"
     info
   end
 
   def info
     pp @clients
     pp @rooms
-    puts "\n\n"
+    puts "\n\n\n\n"
   end
 end
