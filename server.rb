@@ -94,6 +94,8 @@ class Server
             join_room(line, client)
           elsif line.start_with?("LEAVE_CHATROOM")
             leave_room(line, client)
+          elsif line.start_with?("CHAT")
+            send_chat(line, client)
           elsif line.start_with?("HELO")
             text = helo(line, client)
             client.puts text
@@ -124,6 +126,16 @@ class Server
 
   # Handle different requests
   # Chat room requests
+  def send_chat(data, client)
+    info "Sending chat: #{data}"
+    data += client.gets # JOIN_ID
+    data += client.gets # CLIENT_NAME
+    data += client.gets # CLIENT_NAME
+    data += client.gets # MESSAGE
+    info "got data: #{data}"
+
+    
+  end
 
   def leave_room(data, client)
     info "Leaving room: #{data}"
@@ -147,9 +159,8 @@ class Server
 
     message = "#{client_name} has left the chatroom."
     @chat_room.message_chat_room(room_ref, message, client_name)
-    
-    @chat_room.remove_client_from_room(client_name, room_ref)
 
+    @chat_room.remove_client_from_room(client_name, room_ref)
   end
 
   def join_room(data, client)
