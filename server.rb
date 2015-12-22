@@ -97,7 +97,7 @@ class Server
           elsif line.start_with?("CHAT")
             send_chat(line, client)
           elsif line.start_with?("DISCONNECT")
-            send_chat(line, client)
+            disconnect_client(line, client)
           elsif line.start_with?("HELO")
             text = helo(line, client)
             client.puts text
