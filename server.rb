@@ -138,14 +138,11 @@ class Server
     client_name = data.scan(/CLIENT_NAME:(..\w+)/).first[0].strip!
     message     = data.scan(/MESSAGE:(.+)/).first[0].strip!
 
-    info "room_ref: #{room_ref}, join_id: #{join_id}, client_name: #{client_name}, message: #{message}"
+    info "room_ref: #{room_ref}, join_id: #{join_id}, client_name: #{client_name}, message: '#{message}'"
 
+    @chat_room.message_chat_room(room_ref, message, client_name)
+    info "message send :)"
 
-#     CHAT: 3260193846660837346
-# JOIN_ID: 1194380022527249647
-# CLIENT_NAME: client1
-# MESSAGE: hello world from client 1
-    
   end
 
   def leave_room(data, client)
