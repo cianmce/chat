@@ -2,7 +2,7 @@ require_relative 'server'
 require 'logger'
 
 
-MAX_THREADS  = 10
+MAX_THREADS  = 15
 STUDENT_ID   = 'a04dcb0fee025f2b48663ba413d0b8d481db11b65b254d41e3611b834c17d6d5'
 DEFAULT_PORT = 5000
 port_number = ARGV[0] || DEFAULT_PORT
