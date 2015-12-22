@@ -57,9 +57,11 @@ class Server
         puts 'Closed'
       end
     end
+    info "joining threads"
 
     # Wait for threads to join
-    threads.map(&:join)
+    threads.map(&:exit)
+    # threads.map(&:join)
     puts 'Byeee :)'
   end
 
