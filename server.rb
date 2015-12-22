@@ -135,9 +135,8 @@ class Server
     data += client.gets # CLIENT_NAME
     info "got data: '#{data}'"
 
-    client_name = data.scan(/CLIENT_NAME:(\w+)/).first[0]
+    client_name = data.scan(/CLIENT_NAME:(..\w+)/).first[0].strip
     info "client_name: '#{client_name}'"
-    client_name = client_name.strip!
 
 
     @chat_room.remove_client(client_name)
@@ -151,8 +150,8 @@ class Server
     info "got data: '#{data}'"
     room_ref    = data.scan(/CHAT:(..\d+)/).first[0].to_i
     join_id     = data.scan(/JOIN_ID:(..\d+)/).first[0].to_i
-    client_name = data.scan(/CLIENT_NAME:(..\w+)/).first[0].strip!
-    message     = data.scan(/MESSAGE:(.+)/).first[0].strip!
+    client_name = data.scan(/CLIENT_NAME:(..\w+)/).first[0].strip
+    message     = data.scan(/MESSAGE:(.+)/).first[0].strip
 
     info "room_ref: #{room_ref}, join_id: #{join_id}, client_name: #{client_name}, message: '#{message}'"
 
@@ -173,7 +172,7 @@ class Server
     room_ref    = data.scan(/LEAVE_CHATROOM:(..\d+)/).first[0].to_i
     join_id     = data.scan(/JOIN_ID:(..\d+)/).first[0].to_i
     # client_name as string, strip whitespace
-    client_name = data.scan(/CLIENT_NAME:(..\w+)/).first[0].strip!
+    client_name = data.scan(/CLIENT_NAME:(..\w+)/).first[0].strip
 
     info "room_ref: #{room_ref}, join_id: #{join_id}, client_name: #{client_name}"
 
