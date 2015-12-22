@@ -27,7 +27,7 @@ class ChatRoom
 
     socket = @clients.delete(client_name)
     unless socket.nil?
-      socket.close
+      # socket.close
     end
   end
 

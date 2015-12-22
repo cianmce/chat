@@ -104,7 +104,9 @@ class Server
           elsif line == "KILL_SERVICE\n"
             text = kill(line, client)
             info "returning: '#{text}'"
-            client.puts text
+            sleep(1)
+            client.puts "Shutting down..."
+            sleep(1)
             client.close
           else
             text = unknown_message(line, client)
