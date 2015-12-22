@@ -27,11 +27,8 @@ class ChatRoom
 
     socket = @clients.delete(client_name)
     unless socket.nil?
-      puts "Closing socket"
       socket.close
     end
-    puts "Removed"
-    info
   end
 
   def message_chat_room(room_ref, message, client_name)
@@ -92,15 +89,6 @@ MESSAGE:#{message}\n\n"
 
     # remove client if in the room
     puts @rooms[room_ref][:clients].delete(client_name)
-    puts "\n\nRemoved '#{client_name}':"
-    puts @rooms[room_ref][:clients]
-    puts "\n"
-    info
-  end
-
-  def info
-    pp @clients
-    pp @rooms
-    puts "\n\n\n\n"
+    puts "Removed '#{client_name}':"
   end
 end
