@@ -10,6 +10,14 @@ class ChatRoom
 
   end
 
+  def exit
+    @clients.each do |client_name, socket|
+      puts "Closing socket for: '#{client_name}'"
+      socket.close
+      puts "Closed..."
+    end
+  end
+
   def remove_client(client_name)
     puts "removing client: '#{client_name}'"
 

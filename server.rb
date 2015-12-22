@@ -108,6 +108,7 @@ class Server
             client.puts "Shutting down..."
             sleep(1)
             client.close
+            puts "SHUT DOWN!"
           else
             text = unknown_message(line, client)
             info "returning: '#{text}'"
