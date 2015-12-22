@@ -53,7 +53,7 @@ class Server
         work_q.push(@socket.accept)
         puts "\t\t\tGot one!"
       rescue Errno::EBADF => e
-        puts "\n\n\t\t\t\t\tError accepting"
+        puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\tError accepting"
         puts e
       rescue IOError
         # Socket closed by kill function
