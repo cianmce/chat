@@ -50,10 +50,11 @@ class Server
     while @running
       begin
         puts "\t\t\tWaiting"
-        if @running
-          work_q.push(@socket.accept)
-          puts "\t\t\tGot one!"
-        end
+        work_q.push(@socket.accept)
+        puts "\t\t\tGot one!"
+      rescue Errno::EBADF => e
+        puts "\n\n\t\t\t\t\tError accepting"
+        puts e
       rescue IOError
         # Socket closed by kill function
         puts 'Closed'
