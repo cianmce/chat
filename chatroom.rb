@@ -15,10 +15,13 @@ class ChatRoom
 
 
     message = "#{client_name} has left the chatroom."
-    @rooms.each do |room_ref, value|
+    @rooms.each do |room_ref, room|
       puts "ref: '#{room_ref}'"
-      message_chat_room(room_ref, message, client_name)
-      remove_client_from_room(client_name, room_ref)
+      if room[:clients].include? client_name
+        puts "has client!"
+        message_chat_room(room_ref, message, client_name)
+        remove_client_from_room(client_name, room_ref)
+      end
     end
 
 
