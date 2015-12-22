@@ -68,12 +68,7 @@ MESSAGE:#{message}\n\n"
 
     # remove client if in the room
     @rooms[room_ref][:clients] - [client_name]
-
-    # Remove client from chatrooms
-    if @clients.include? client_name
-      puts "Removing client: #{client_name}"
-      @clients.delete(client_name)
-    end
+    
   end
 
   def info
