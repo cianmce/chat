@@ -230,6 +230,7 @@ class Server
   def kill(data, client)
     info "Killing"
     @running = false
+    @chat_room.close
     @socket.close
     text = "Server closing\n"
     sleep(0.5)

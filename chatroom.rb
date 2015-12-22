@@ -10,7 +10,7 @@ class ChatRoom
 
   end
 
-  def exit
+  def close
     @clients.each do |client_name, socket|
       puts "Closing socket for: '#{client_name}'"
       socket.close
