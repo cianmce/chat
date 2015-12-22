@@ -126,6 +126,7 @@ class Server
 
       if not @running
         info "Exiting"
+        sleep(3)
         exit
       end
     end
