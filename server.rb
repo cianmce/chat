@@ -112,7 +112,6 @@ class Server
             text = unknown_message(line, client)
             info "returning: '#{text}'"
             client.puts text
-            client.close
           end
 
         rescue Exception => e
