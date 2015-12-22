@@ -104,9 +104,7 @@ class Server
           elsif line == "KILL_SERVICE\n"
             text = kill(line, client)
             info "returning: '#{text}'"
-            sleep(1)
             client.puts "Shutting down..."
-            sleep(1)
             client.close
             puts "SHUT DOWN!"
           else
@@ -233,7 +231,6 @@ class Server
     @chat_room.close
     @socket.close
     text = "Server closing\n"
-    sleep(0.5)
     return text
   end
 
