@@ -60,11 +60,11 @@ class Server
         puts 'Closed'
       end
     end
-    info "joining threads"
+    info "\n\n\n\n\n\n\njoining threads"
 
     # Wait for threads to join
     threads.map(&:exit)
-    sleep(2)
+    sleep(1)
     # threads.map(&:join)
     puts 'Byeee :)'
   end
