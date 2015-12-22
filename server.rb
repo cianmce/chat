@@ -135,8 +135,9 @@ class Server
     data += client.gets # CLIENT_NAME
     info "got data: '#{data}'"
 
-    client_name = data.scan(/CLIENT_NAME:(..\w+)/).first[0].strip!
+    client_name = data.scan(/CLIENT_NAME:(\w+)/).first[0]
     info "client_name: '#{client_name}'"
+    client_name = client_name.strip!
 
 
     @chat_room.remove_client(client_name)
