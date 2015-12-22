@@ -220,7 +220,8 @@ class Server
     return text
   end
   def unknown_message(data, client)
-    text = "Unknown message[#{data.length}]: '#{data}'"
+    err  = "Unknown message[#{data.length}]: '#{data}'"
+    text = "ERROR_CODE: 1\nERROR_DESCRIPTION: #{err}\n"
     info text
     return text
   end
