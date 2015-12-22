@@ -53,7 +53,7 @@ class Server
         work_q.push(@socket.accept)
         puts "\t\t\tGot one!"
       rescue Errno::EBADF => e
-        puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\tError accepting"
+        puts "Error accepting, Closed"
         puts e
       rescue IOError
         # Socket closed by kill function
@@ -64,6 +64,7 @@ class Server
 
     # Wait for threads to join
     threads.map(&:exit)
+    sleep(2)
     # threads.map(&:join)
     puts 'Byeee :)'
   end
@@ -129,7 +130,7 @@ class Server
 
       if not @running
         info "Exiting"
-        sleep(3)
+        sleep(5)
         exit
       end
     end
