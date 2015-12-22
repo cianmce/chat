@@ -132,8 +132,19 @@ class Server
     data += client.gets # CLIENT_NAME
     data += client.gets # CLIENT_NAME
     data += client.gets # MESSAGE
-    info "got data: #{data}"
+    info "got data: '#{data}'"
+    room_ref    = data.scan(/CHAT:(..\d+)/).first[0].to_i
+    join_id     = data.scan(/JOIN_ID:(..\d+)/).first[0].to_i
+    client_name = data.scan(/CLIENT_NAME:(..\w+)/).first[0].strip!
+    message     = data.scan(/MESSAGE:(..\w+)/).first[0].strip!
 
+    info "room_ref: #{room_ref}, join_id: #{join_id}, client_name: #{client_name}, message: #{message}"
+
+
+#     CHAT: 3260193846660837346
+# JOIN_ID: 1194380022527249647
+# CLIENT_NAME: client1
+# MESSAGE: hello world from client 1
     
   end
 
@@ -143,7 +154,7 @@ class Server
     data += client.gets # JOIN_ID
     data += client.gets # CLIENT_NAME
 
-    info "got data: #{data}"
+    info "got data: '#{data}'"
 
     # Get room_ref and join_id as int
     room_ref    = data.scan(/LEAVE_CHATROOM:(..\d+)/).first[0].to_i
