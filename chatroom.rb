@@ -67,7 +67,8 @@ MESSAGE:#{message}\n\n"
     puts "Removing '#{client_name}' from '#{room_ref}'"
 
     # remove client if in the room
-    @rooms[room_ref][:clients] - [client_name]
+    puts "deleting: "
+    puts @rooms[room_ref][:clients].delete(client_name)
     puts "\n\nRemoved '#{client_name}':"
     puts @rooms[room_ref][:clients]
     puts "\n"
