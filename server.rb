@@ -136,7 +136,7 @@ class Server
     room_ref    = data.scan(/CHAT:(..\d+)/).first[0].to_i
     join_id     = data.scan(/JOIN_ID:(..\d+)/).first[0].to_i
     client_name = data.scan(/CLIENT_NAME:(..\w+)/).first[0].strip!
-    message     = data.scan(/MESSAGE:(..\w+)/).first[0].strip!
+    message     = data.scan(/MESSAGE:(.+)/).first[0].strip!
 
     info "room_ref: #{room_ref}, join_id: #{join_id}, client_name: #{client_name}, message: #{message}"
 
