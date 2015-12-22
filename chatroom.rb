@@ -13,6 +13,7 @@ class ChatRoom
   def close
     @clients.each do |client_name, socket|
       puts "Closing socket for: '#{client_name}'"
+      socket.shutdown(Socket::SHUT_WR)
       socket.close
       puts "Closed..."
     end

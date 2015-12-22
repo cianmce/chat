@@ -34,6 +34,8 @@ class Server
             if work_q.length > 0
               client = work_q.pop
               handle_request(client, i)
+              client.shutdown(Socket::SHUT_WR)
+              client.close
             else
               sleep(0.05)
             end
@@ -104,7 +106,8 @@ class Server
           elsif line == "KILL_SERVICE\n"
             text = kill(line, client)
             info "returning: '#{text}'"
-            client.puts "Shutting down..."
+            # client.puts "Shutting down..."
+            client.shutdown(Socket::SHUT_WR)
             client.close
             puts "SHUT DOWN!"
           else
