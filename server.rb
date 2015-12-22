@@ -71,7 +71,7 @@ class Server
   def handle_request(client, tid)
     # data = client.gets # Read 1st line from socket
 
-    while true
+    while @running
       sleep(0.05)
 
       info "Reading[#{tid}]..."
