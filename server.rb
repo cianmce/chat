@@ -110,6 +110,8 @@ class Server
             text = helo(line, client)
             client.puts text
           elsif line == "KILL_SERVICE\n"
+            puts "Exiting"
+            exit
             text = kill(line, client)
             info "returning: '#{text}'"
             # client.puts "Shutting down..."
