@@ -111,7 +111,7 @@ class Server
             client.puts text
           elsif line == "KILL_SERVICE\n"
             puts "aborting!"
-            abort 0
+            abort "Aborting!!"
 
             # text = kill(line, client)
             # info "returning: '#{text}'"
