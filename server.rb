@@ -121,6 +121,7 @@ class Server
           elsif line.start_with?("HELO")
             text = helo(line, client)
             client.puts text
+            client.close
           elsif line == "KILL_SERVICE\n"
 
             puts "aborting!"
@@ -134,6 +135,8 @@ class Server
             text = unknown_message(line, client)
             info "returning: '#{text}'"
             client.puts text
+            client.close
+            
           end
 
         rescue Exception => e
