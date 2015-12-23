@@ -72,6 +72,15 @@ class Server
     @logger.info msg
   end
 
+  def kill2(data, client)
+    info "Killing"
+    @running = false
+    @socket.close
+    text = "Server closing\n"
+    info "returning: '#{text}'"
+    return text
+  end
+
   def handle_request(client, tid)
     # data = client.gets # Read 1st line from socket
 
@@ -81,13 +90,10 @@ class Server
       info "Reading[#{tid}]..."
       line = client.gets
       if line == "KILL_SERVICE\n"
-        puts "aborting!"
-        text = kill(line, client)
-        info "returning: '#{text}'"
-        client.puts "Shutting down..."
-        # client.shutdown(Socket::SHUT_WR)
+        text = kill(data, client)
+        client.puts text
         client.close
-        puts "SHUT DOWN!"
+        exit
       end
       # data = client.readpartial(MAX_READ_CHUNK) # Read data
       info "\n\n\n                  ----------received[#{tid}]: '#{line}'----------\n\n\n"
