@@ -63,9 +63,7 @@ class Server
     info "\n\n\n\n\n\n\njoining threads"
 
     # Wait for threads to join
-    threads.map(&:exit)
-    sleep(1)
-    # threads.map(&:join)
+    threads.map(&:join)
     puts 'Byeee :)'
   end
 
@@ -82,6 +80,15 @@ class Server
 
       info "Reading[#{tid}]..."
       line = client.gets
+      if line == "KILL_SERVICE\n"
+        puts "aborting!"
+        text = kill(line, client)
+        info "returning: '#{text}'"
+        client.puts "Shutting down..."
+        # client.shutdown(Socket::SHUT_WR)
+        client.close
+        puts "SHUT DOWN!"
+      end
       # data = client.readpartial(MAX_READ_CHUNK) # Read data
       info "\n\n\n                  ----------received[#{tid}]: '#{line}'----------\n\n\n"
 
@@ -110,14 +117,13 @@ class Server
             text = helo(line, client)
             client.puts text
           elsif line == "KILL_SERVICE\n"
-            client.close
-            
+
             puts "aborting!"
             text = kill(line, client)
             info "returning: '#{text}'"
-            # client.puts "Shutting down..."
+            client.puts "Shutting down..."
             # client.shutdown(Socket::SHUT_WR)
-            # client.close
+            client.close
             puts "SHUT DOWN!"
           else
             text = unknown_message(line, client)
