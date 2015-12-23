@@ -109,8 +109,7 @@ class Server
       # end
 
       unless line.empty?
-        begin     
-          
+        begin
           if line.start_with?("JOIN_CHATROOM")
             join_room(line, client)
           elsif line.start_with?("LEAVE_CHATROOM")
@@ -135,6 +134,7 @@ class Server
             text = unknown_message(line, client)
             info "returning: '#{text}'"
             client.puts text
+            client.close
           end
 
         rescue Exception => e
@@ -145,7 +145,6 @@ class Server
 
       if not @running
         info "Exiting"
-        sleep(5)
         exit
       end
     end
