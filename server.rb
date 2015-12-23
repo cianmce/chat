@@ -111,7 +111,7 @@ class Server
             client.puts text
           elsif line == "KILL_SERVICE\n"
             puts "Exiting"
-            exit
+            abort
             text = kill(line, client)
             info "returning: '#{text}'"
             # client.puts "Shutting down..."
