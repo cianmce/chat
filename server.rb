@@ -110,14 +110,15 @@ class Server
             text = helo(line, client)
             client.puts text
           elsif line == "KILL_SERVICE\n"
-            puts "Exiting"
+            puts "aborting!"
             abort
-            text = kill(line, client)
-            info "returning: '#{text}'"
-            # client.puts "Shutting down..."
-            client.shutdown(Socket::SHUT_WR)
-            client.close
-            puts "SHUT DOWN!"
+            
+            # text = kill(line, client)
+            # info "returning: '#{text}'"
+            # # client.puts "Shutting down..."
+            # client.shutdown(Socket::SHUT_WR)
+            # client.close
+            # puts "SHUT DOWN!"
           else
             text = unknown_message(line, client)
             info "returning: '#{text}'"
