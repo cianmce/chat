@@ -89,12 +89,6 @@ class Server
 
       info "Reading[#{tid}]..."
       line = client.gets
-      if line == "KILL_SERVICE\n"
-        text = kill(data, client)
-        client.puts text
-        client.close
-        exit
-      end
       # data = client.readpartial(MAX_READ_CHUNK) # Read data
       info "\n\n\n                  ----------received[#{tid}]: '#{line}'----------\n\n\n"
 
@@ -107,6 +101,12 @@ class Server
       #   info "Error getting client address"
       #   info e
       # end
+      if line == "KILL_SERVICE\n"
+        text = kill(data, client)
+        client.puts text
+        client.close
+        exit
+      end
 
       unless line.empty?
         begin
