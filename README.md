@@ -1,4 +1,4 @@
-# Lab 2
+# Lab 4
 
 ### Run:
 
@@ -22,4 +22,7 @@ echo -e "HELO Other\n" | nc localhost 2000
 echo -e "Foo Bar\n" | nc localhost 2000
 echo -e "KILL_SERVICE\n" | nc localhost 2000
 ```
+
+Error with KILL_SERVICE grading.
+Prob cause being run on free online server. It does successfully close
 
