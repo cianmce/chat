@@ -103,9 +103,9 @@ class Server
       # end
       if line == "KILL_SERVICE\n"
         puts "killinggg"
-        text = kill(data, client)
-        client.puts text
-        client.close
+        # text = kill(data, client)
+        # client.puts text
+        # client.close
         exit
       end
 
