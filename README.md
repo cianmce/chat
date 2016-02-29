@@ -14,6 +14,11 @@ e.g.
 
 `./start.sh 2000`
 
+### Note
+
+The test says KILL_SERVICE doesn't stop the server, but it does and it close the program
+
+
 ### Sample input: 
 
 ```bash
