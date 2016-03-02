@@ -82,6 +82,7 @@ class Server
       info "\n\n\n                  ----------received[#{tid}]: '#{line}'----------\n\n\n"
 
       if line == "KILL_SERVICE\n"
+        puts "received KILL_SERVICE line"
         puts "killinggg"
         # Tried with and without writing to socket before killing
         kill(data, client)
