@@ -85,7 +85,12 @@ class Server
         puts "received KILL_SERVICE line"
         puts "killinggg"
         # Tried with and without writing to socket before killing
-        kill(data, client)
+        begin
+          kill(data, client)
+        rescue Exception => e
+          info "\n\n\t\tERROR in handle_request:"
+          info e
+        end 
         exit
       end
 
