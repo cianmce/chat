@@ -85,13 +85,7 @@ class Server
         puts "received KILL_SERVICE line"
         puts "killinggg"
         # Tried with and without writing to socket before killing
-        begin
-          kill(data, client)
-            
-        rescue Exception => e
-          puts "error"
-          puts e
-        end
+        kill(client)
         exit
       end
 
@@ -112,7 +106,7 @@ class Server
           elsif line == "KILL_SERVICE\n"
 
             puts "aborting!"
-            text = kill(line, client)
+            text = kill(client)
             info "returning: '#{text}'"
             client.puts "Shutting down..."
             # client.shutdown(Socket::SHUT_WR)
@@ -247,7 +241,7 @@ class Server
     return text
   end
 
-  def kill(data, client)
+  def kill(client)
     info "Killing method"
     @running = false
     @chat_room.close
