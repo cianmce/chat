@@ -234,6 +234,7 @@ class Server
     info "Killing method"
     @running = false
     @chat_room.close
+    client.close
     info "shutdown(Socket::SHUT_WR)"
     @socket.shutdown(Socket::SHUT_WR)
     info "close socket"
