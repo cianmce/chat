@@ -83,7 +83,6 @@ class Server
 
       if line == "KILL_SERVICE\n"
         puts "received KILL_SERVICE line"
-        puts "killinggg"
         # Tried with and without writing to socket before killing
         kill(client)
         exit
@@ -102,16 +101,6 @@ class Server
           elsif line.start_with?("HELO")
             text = helo(line, client)
             client.puts text
-            # client.close
-          elsif line == "KILL_SERVICE\n"
-
-            puts "aborting!"
-            text = kill(client)
-            info "returning: '#{text}'"
-            client.puts "Shutting down..."
-            # client.shutdown(Socket::SHUT_WR)
-            client.close
-            puts "SHUT DOWN!"
           else
             text = unknown_message(line, client)
             info "returning: '#{text}'"
