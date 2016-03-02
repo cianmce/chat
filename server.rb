@@ -84,9 +84,7 @@ class Server
       if line == "KILL_SERVICE\n"
         puts "killinggg"
         # Tried with and without writing to socket before killing
-        text = kill(data, client)
-        client.puts text
-        client.close
+        kill(data, client)
         exit
       end
 
