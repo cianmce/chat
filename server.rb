@@ -12,7 +12,7 @@ class Server
     @local_ip = local_ip
     @remote_ip = open('http://whatismyip.akamai.com').read
     @chat_room = ChatRoom.new
-    info "remote_ip: #{@remote_ip}"
+    info "Remote_ip: #{@remote_ip}"
     info 'initialized'
   end
 
@@ -85,12 +85,7 @@ class Server
         puts "received KILL_SERVICE line"
         puts "killinggg"
         # Tried with and without writing to socket before killing
-        begin
-          kill(data, client)
-        rescue Exception => e
-          info "\n\n\t\tERROR in handle_request:"
-          info e
-        end 
+        kill(data, client)
         exit
       end
 
