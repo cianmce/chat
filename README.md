@@ -29,5 +29,5 @@ echo -e "KILL_SERVICE\n" | nc localhost 2000
 ```
 
 Error with KILL_SERVICE grading.
-Prob cause being run on free online server. It does successfully close
+Probably cause being run on free online server. It does successfully close
 
