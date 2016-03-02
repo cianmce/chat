@@ -72,40 +72,21 @@ class Server
     @logger.info msg
   end
 
-  def kill2(data, client)
-    info "Killing"
-    @running = false
-    @socket.close
-    text = "Server closing\n"
-    info "returning: '#{text}'"
-    return text
-  end
-
   def handle_request(client, tid)
-    # data = client.gets # Read 1st line from socket
 
     while @running
       sleep(0.05)
 
       info "Reading[#{tid}]..."
       line = client.gets
-      # data = client.readpartial(MAX_READ_CHUNK) # Read data
       info "\n\n\n                  ----------received[#{tid}]: '#{line}'----------\n\n\n"
 
-      # port, ip = client.unpack_sockaddr_in(socket.getpeername)
-      # info "port: #{port} IP: #{ip}"
-
-      # begin
-      #   info "Client: (#{client.peeraddr[2]}) #{client.peeraddr[3]}"
-      # rescue Exception => e
-      #   info "Error getting client address"
-      #   info e
-      # end
       if line == "KILL_SERVICE\n"
         puts "killinggg"
-        # text = kill(data, client)
-        # client.puts text
-        # client.close
+        # Tried with and without writing to socket before killing
+        text = kill(data, client)
+        client.puts text
+        client.close
         exit
       end
 
@@ -251,8 +232,18 @@ class Server
     info text
     return text
   end
-  def kill(data, client)
+
+  def kill2(data, client)
     info "Killing"
+    @running = false
+    @socket.close
+    text = "Server closing\n"
+    info "returning: '#{text}'"
+    return text
+  end
+
+  def kill(data, client)
+    info "Killing method"
     @running = false
     @chat_room.close
     info "shutdown(Socket::SHUT_WR)"
